@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashout - CaptchaCash</title>
+    <link rel="stylesheet" href="cashout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="cashout-card">
+            <div class="back-button">
+                <a href="javascript:void(0)" onclick="goBack()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+
+            <div class="card-header">
+                <h2>Cashout</h2>
+                <div class="available-balance">
+                    Available Balance: ₹<span id="balance">0.00</span>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+                <div id="upi-option" class="payment-option">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <span>UPI Payment</span>
+                </div>
+                <div id="bank-option" class="payment-option">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <span>Bank Transfer</span>
+                </div>
+            </div>
+
+            <!-- UPI Form -->
+            <form id="upi-form" class="payment-form hidden">
+                <div class="form-group">
+                    <label for="upi-id">UPI ID</label>
+                    <input type="text" id="upi-id" placeholder="example@upi" required>
+                </div>
+                <div class="form-group">
+                    <label for="upi-pin">UPI PIN</label>
+                    <input type="password" id="upi-pin" placeholder="Enter UPI PIN" required>
+                </div>
+                <button type="submit" class="submit-btn">Proceed to Pay</button>
+            </form>
+
+            <!-- Bank Transfer Form -->
+            <form id="bank-form" class="payment-form hidden">
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required>
+                </div>
+                <div class="card-details">
+                    <div class="form-group">
+                        <label for="expiry">Expiry</label>
+                        <input type="text" id="expiry" maxlength="5" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="password" id="cvv" maxlength="3" placeholder="xxx" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="card-pin">Card PIN</label>
+                    <input type="password" id="card-pin" placeholder="Enter Card PIN" required>
+                </div>
+                <button type="submit" class="submit-btn">Proceed to Pay</button>
+            </form>
+
+            <!-- Success Screen -->
+            <div id="success-screen" class="success-screen hidden">
+                <div class="success-icon">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2>Payment Successful!</h2>
+                <p>Amount will be credited within 24 hours</p>
+                <div class="transaction-details">
+                    <p>Transaction ID: <span id="transactionId"></span></p>
+                    <p>Amount: ₹<span id="amount"></span></p>
+                </div>
+                <button onclick="goBack()" class="home-btn">
+                    <i class="fas fa-home"></i> Back to Home
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <script src="cashout.js"></script>
+</body>
+</html>

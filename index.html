@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaptchaCash - Earn Money Solving Captchas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="website-heading">
+            <h1>CaptchaCash</h1>
+            <p>Earn Money Solving Captchas</p>
+        </div>
+        <header>
+            <div class="earnings-container">
+                <div class="total-earnings">
+                    <i class="fas fa-coins"></i>
+                    <span>Total Earnings: ₹<span id="earnings">0.00</span></span>
+                </div>
+            </div>
+            <div class="cashout-container">
+                <button id="cashout-btn" class="cashout-btn">
+                    <i class="fas fa-wallet"></i>
+                    Cashout
+                </button>
+            </div>
+        </header>
+        <main>
+            <div class="captcha-container">
+                <div class="captcha-card">
+                    <h2>Solve Captcha to Earn ₹5</h2>
+                    <div class="captcha-wrapper">
+                        <canvas id="captcha-canvas" class="captcha-canvas"></canvas>
+                        <div class="captcha-controls">
+                            <button id="refresh-captcha" class="refresh-btn">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="input-section">
+                        <input type="text" id="captcha-input" placeholder="Enter captcha text" maxlength="6">
+                        <button id="submit-captcha" class="submit-btn">Verify</button>
+                    </div>
+                    <div id="message" class="message"></div>
+                </div>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Solved</h3>
+                    <p id="solved-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Time Spent</h3>
+                    <p id="time-spent">00:00</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
