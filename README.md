@@ -27,13 +27,13 @@ This is a **parody website** created for demonstration purposes only. It does no
 <summary>Click to view screenshots</summary>
 
 ### Main Screen
-![Main Screen](https://via.placeholder.com/800x450.png?text=CaptchaCash+Main+Screen)
+![Main Screen](static/img/mainscreen.png)
 
 ### Captcha Solving
-![Captcha Solving](https://via.placeholder.com/800x450.png?text=Captcha+Solving)
+![Captcha Solving](static/img/captchasolving.png)
 
 ### Cashout Screen
-![Cashout Screen](https://via.placeholder.com/800x450.png?text=Cashout+Screen)
+![Cashout Screen](static/img/cashout.png)
 
 </details>
 
@@ -87,6 +87,11 @@ CaptchaCash/
 │   ├── cashout.html    # Cashout page
 │   ├── cashout.css     # Cashout page styles
 │   └── cashout.js      # Cashout functionality
+├── static/             # Static assets directory
+│   └── img/            # Images directory
+│       ├── mainscreen.png
+│       ├── captchasolving.png
+│       └── cashout.png
 └── README.md           # Project documentation
 ```
 
