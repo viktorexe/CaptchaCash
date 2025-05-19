@@ -6,6 +6,9 @@
     <title>Cashout - CaptchaCash</title>
     <link rel="stylesheet" href="cashout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -51,6 +54,9 @@
                     <input type="password" id="upi-pin" placeholder="Enter UPI PIN" required>
                 </div>
                 <button type="submit" class="submit-btn">Proceed to Pay</button>
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i> Your information is secure and encrypted
+                </div>
             </form>
 
             <!-- Bank Transfer Form -->
@@ -74,6 +80,9 @@
                     <input type="password" id="card-pin" placeholder="Enter Card PIN" required>
                 </div>
                 <button type="submit" class="submit-btn">Proceed to Pay</button>
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i> Your information is secure and encrypted
+                </div>
             </form>
 
             <!-- Success Screen -->
@@ -89,6 +98,7 @@
                 <div class="transaction-details">
                     <p>Transaction ID: <span id="transactionId"></span></p>
                     <p>Amount: ₹<span id="amount"></span></p>
+                    <p>Date: <span id="transaction-date"></span></p>
                 </div>
                 <button onclick="goBack()" class="home-btn">
                     <i class="fas fa-home"></i> Back to Home

@@ -6,6 +6,9 @@
     <title>CaptchaCash - Earn Money Solving Captchas</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -21,14 +24,14 @@
                 </div>
             </div>
             <div class="cashout-container">
-                <button id="cashout-btn" class="cashout-btn">
+                <button id="cashout-btn" class="cashout-btn pulse">
                     <i class="fas fa-wallet"></i>
                     Cashout
                 </button>
             </div>
         </header>
         <main>
-            <div class="captcha-container">
+            <div class="captcha-container fade-in">
                 <div class="captcha-card">
                     <h2>Solve Captcha to Earn ₹5</h2>
                     <div class="captcha-wrapper">
@@ -47,18 +50,21 @@
                 </div>
             </div>
             <div class="stats-container">
-                <div class="stat-card">
+                <div class="stat-card fade-in">
                     <i class="fas fa-check-circle"></i>
                     <h3>Solved</h3>
                     <p id="solved-count">0</p>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card fade-in">
                     <i class="fas fa-clock"></i>
                     <h3>Time Spent</h3>
                     <p id="time-spent">00:00</p>
                 </div>
             </div>
         </main>
+        <footer>
+            <p>© 2023 CaptchaCash - For demonstration purposes only</p>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>

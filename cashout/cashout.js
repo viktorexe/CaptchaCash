@@ -5,6 +5,7 @@ class CashoutManager {
         this.loadBalance();
         this.selectPaymentMethod('upi'); 
     }
+    
     initializeElements() {
         this.upiOption = document.getElementById('upi-option');
         this.bankOption = document.getElementById('bank-option');        
@@ -18,52 +19,43 @@ class CashoutManager {
         this.cardPinInput = document.getElementById('card-pin');        
         this.upiIdInput = document.getElementById('upi-id');
         this.upiPinInput = document.getElementById('upi-pin');
-        this.upiIcon = `
-            <div class="icon-wrapper">
-                <svg viewBox="0 0 24 24" width="40" height="40">
-                    <path fill="currentColor" d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z"/>
-                </svg>
-            </div>
-            <span>UPI Payment</span>
-        `;        
-        this.bankIcon = `
-            <div class="icon-wrapper">
-                <svg viewBox="0 0 24 24" width="40" height="40">
-                    <path fill="currentColor" d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10H4Z"/>
-                </svg>
-            </div>
-            <span>Bank Transfer</span>
-        `;
-        if (this.upiOption) this.upiOption.innerHTML = this.upiIcon;
-        if (this.bankOption) this.bankOption.innerHTML = this.bankIcon;
+        
         if (!this.upiOption || !this.bankOption || !this.upiForm || 
             !this.bankForm || !this.balanceElement) {
             console.error('Required elements not found. Check your HTML IDs.');
         }
     }
+    
     attachEventListeners() {
         if (this.upiOption) {
             this.upiOption.addEventListener('click', () => this.selectPaymentMethod('upi'));
         }
+        
         if (this.bankOption) {
             this.bankOption.addEventListener('click', () => this.selectPaymentMethod('bank'));
         }
+        
         if (this.upiForm) {
             this.upiForm.addEventListener('submit', (e) => this.handleUpiSubmission(e));
         }
+        
         if (this.bankForm) {
             this.bankForm.addEventListener('submit', (e) => this.handleBankSubmission(e));
         }
+        
         if (this.cardNumberInput) {
             this.cardNumberInput.addEventListener('input', (e) => this.formatCardNumber(e));
         }
+        
         if (this.expiryInput) {
             this.expiryInput.addEventListener('input', (e) => this.formatExpiry(e));
         }
+        
         if (this.cvvInput) {
             this.cvvInput.addEventListener('input', (e) => this.formatCVV(e));
         }
     }
+    
     loadBalance() {
         try {
             const balance = localStorage.getItem('earnings') || '0.00';
@@ -77,21 +69,32 @@ class CashoutManager {
             }
         }
     }
+    
     selectPaymentMethod(method) {
+        // Add animation class
+        const targetOption = method === 'upi' ? this.upiOption : this.bankOption;
+        
         this.upiOption.classList.remove('selected');
         this.bankOption.classList.remove('selected');
         this.upiForm.classList.add('hidden');
         this.bankForm.classList.add('hidden');
+        
+        // Add selected class with animation
+        targetOption.classList.add('selected');
+        
         if (method === 'upi') {
-            this.upiOption.classList.add('selected');
-            this.upiForm.classList.remove('hidden');
-            if (this.upiIdInput) this.upiIdInput.focus();
+            setTimeout(() => {
+                this.upiForm.classList.remove('hidden');
+                if (this.upiIdInput) this.upiIdInput.focus();
+            }, 100);
         } else {
-            this.bankOption.classList.add('selected');
-            this.bankForm.classList.remove('hidden');
-            if (this.cardNumberInput) this.cardNumberInput.focus();
+            setTimeout(() => {
+                this.bankForm.classList.remove('hidden');
+                if (this.cardNumberInput) this.cardNumberInput.focus();
+            }, 100);
         }
     }
+    
     formatCardNumber(e) {
         let value = e.target.value.replace(/\D/g, '');
         value = value.replace(/(\d{4})/g, '$1 ').trim();
@@ -166,23 +169,35 @@ class CashoutManager {
 
     showSuccessScreen() {
         const transactionId = 'TXN' + Math.random().toString(36).substr(2, 9).toUpperCase();        
-        const amount = this.balanceElement.textContent;        
+        const amount = this.balanceElement.textContent;
+        
+        // Get current date in readable format
+        const now = new Date();
+        const dateOptions = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        const formattedDate = now.toLocaleDateString('en-US', dateOptions);
+        
         document.getElementById('transactionId').textContent = transactionId;
         document.getElementById('amount').textContent = amount;
+        document.getElementById('transaction-date').textContent = formattedDate;
+        
+        // Hide payment options and forms
         this.upiOption.style.display = 'none';
         this.bankOption.style.display = 'none';
         this.upiForm.style.display = 'none';
         this.bankForm.style.display = 'none';
+        
         const backButton = document.querySelector('.back-button');
         if (backButton) {
             backButton.style.display = 'none';
         }
+        
         if (this.successScreen) {
             this.successScreen.classList.remove('hidden');
             setTimeout(() => {
                 this.successScreen.classList.add('show');
             }, 100);
         }
+        
         localStorage.setItem('earnings', '0');
     }
 
@@ -190,14 +205,19 @@ class CashoutManager {
         const submitBtn = document.querySelector(`#${method}-form .submit-btn`);
         submitBtn.innerHTML = '<span class="loading-spinner"></span>Processing...';
         submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        
+        // Simulate processing delay
         setTimeout(() => {
             this.showSuccessScreen();
         }, 2000);
     }
 }
+
 function goBack() {
     window.location.replace('../index.html');
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     new CashoutManager();
 });
